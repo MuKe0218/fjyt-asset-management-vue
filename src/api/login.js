@@ -14,7 +14,7 @@ export function login (username, password, code, uuid) {
 // 获取验证码
 export function getCodeImg () {
   return request({
-    url: '/code',
+    url: '/system/kaptcha/getkapcha',
     headers: {
       isToken: false
     },

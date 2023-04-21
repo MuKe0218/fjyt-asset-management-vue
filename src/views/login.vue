@@ -146,8 +146,8 @@ export default {
     },
     getCode () {
       getCodeImg().then(res => {
-        this.codeUrl = 'data:image/gif;base64,' + res.data.data.img
-        this.loginForm.uuid = res.data.data.uuid
+        this.codeUrl = 'data:image/gif;base64,' + res.data.img
+        this.loginForm.uuid = res.data.uuid
       })
     }
   }

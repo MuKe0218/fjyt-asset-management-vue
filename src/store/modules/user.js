@@ -21,7 +21,7 @@ const user = {
       const uuid = userInfo.uuid
       return new Promise((resolve, reject) => {
         login(username, password, code, uuid).then(res => {
-          let data = res.data.data
+          let data = res.data
           setToken(data.access_token)
           commit('SET_TOKEN', data.access_token)
           setExpiresIn(data.expires_in)

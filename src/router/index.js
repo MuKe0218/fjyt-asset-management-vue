@@ -4,12 +4,21 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+// 公共路由
+export const constantRoutes = [
+  {
+    path: '/index',
+    name: 'Index',
+    component: () => import('@/views/index')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login')
+  }
+]
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Login',
-      component: () => import('@/views/login')
-    }
-  ]
+  mode: 'history', // 去掉url中的#
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
 })

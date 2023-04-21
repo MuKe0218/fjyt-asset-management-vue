@@ -94,6 +94,14 @@ export default {
       redirect: undefined
     }
   },
+  // watch: {
+  //   $route: {
+  //     handler: function (route) {
+  //       this.redirect = route.query && route.query.redirect
+  //     },
+  //     immediate: true
+  //   }
+  // },
   created () {
     this.getCode()
     this.getCookie()
@@ -114,7 +122,8 @@ export default {
             Cookies.remove('rememberMe')
           }
           this.$store.dispatch('Login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' }).catch(() => {})
+            console.log('登录成功')
+            this.$router.push({ path: this.redirect || '/index' }).catch(() => {})
           }).catch(() => {
             this.loading = false
             if (this.captchaEnabled) {
@@ -137,7 +146,6 @@ export default {
     },
     getCode () {
       getCodeImg().then(res => {
-        console.log(res.data)
         this.codeUrl = 'data:image/gif;base64,' + res.data.data.img
         this.loginForm.uuid = res.data.data.uuid
       })

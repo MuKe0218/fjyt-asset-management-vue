@@ -1,8 +1,8 @@
 // import { login } from '@/api/login'
 
-import { login } from '../../api/login'
+import { login, logout } from '../../api/login'
 
-import { getToken, setToken, setExpiresIn } from '@/utils/auth'
+import { getToken, setToken, setExpiresIn, removeToken } from '@/utils/auth'
 const user = {
   state: { // 用于存储数据
     token: getToken(), // getToken(),
@@ -45,6 +45,21 @@ const user = {
           commit('SET_TOKEN', data.access_token)
           setExpiresIn(data.expires_in)
           commit('SET_EXPIRES_IN', data.expires_in)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    LogOut ({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        // eslint-disable-next-line no-undef
+        logout(state.token).then(() => {
+          commit('SET_TOKEN', '')
+          commit('SET_ROLES', [])
+          commit('SET_PERMISSIONS', [])
+          // eslint-disable-next-line no-undef
+          removeToken()
           resolve()
         }).catch(error => {
           reject(error)

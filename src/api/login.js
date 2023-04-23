@@ -14,11 +14,18 @@ export function login (username, password, code, uuid) {
 // 获取验证码
 export function getCodeImg () {
   return request({
-    url: '/system/kaptcha/getkapcha',
+    url: '/system/kaptcha/getKapcha',
     headers: {
       isToken: false
     },
     method: 'get',
     timeout: 20000
+  })
+}
+// 退出方法
+export function logout () {
+  return request({
+    url: '/auth/logout',
+    method: 'delete'
   })
 }

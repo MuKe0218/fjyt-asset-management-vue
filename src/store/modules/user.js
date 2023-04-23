@@ -11,7 +11,26 @@ const user = {
     roles: [],
     permissions: []
   },
-  mutations: {}, // 同步更改数据
+  mutations: { // 同步更改数据
+    SET_TOKEN: (state, token) => {
+      state.token = token
+    },
+    SET_EXPIRES_IN: (state, time) => {
+      state.expires_in = time
+    },
+    SET_NAME: (state, name) => {
+      state.name = name
+    },
+    SET_AVATAR: (state, avatar) => {
+      state.avatar = avatar
+    },
+    SET_ROLES: (state, roles) => {
+      state.roles = roles
+    },
+    SET_PERMISSIONS: (state, permissions) => {
+      state.permissions = permissions
+    }
+  },
   actions: { // 异步更数据
     // 登录
     Login ({ commit }, userInfo) {

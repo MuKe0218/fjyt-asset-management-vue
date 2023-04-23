@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 import './permission'
 import './assets/icons'
+import '@/assets/styles/index.scss'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

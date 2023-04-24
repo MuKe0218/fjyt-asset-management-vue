@@ -1,5 +1,5 @@
 import router from './router'
-// import store from './store'
+import store from './store'
 // import { Message } from 'element-ui'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -28,8 +28,9 @@ router.beforeEach((to, from, next) => {
       //     isRelogin.show = false
       //     store.dispatch('GenerateRoutes').then(accessRoutes => {
       //       // 根据roles权限生成可访问的路由表
-      //       router.addRoutes(accessRoutes) // 动态添加可访问路由表
-      //       next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+      //       // router.addRoutes(accessRoutes) // 动态添加可访问路由表
+      //       // next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+      //       next()
       //     })
       //   }).catch(err => {
       //     store.dispatch('LogOut').then(() => {
@@ -40,6 +41,12 @@ router.beforeEach((to, from, next) => {
       // } else {
       //   next()
       // }
+      console.log(to.path)
+      store.dispatch('GenerateRoutes').then(accessRoutes => {
+        // 根据roles权限生成可访问的路由表
+        // router.addRoutes(accessRoutes) // 动态添加可访问路由表
+        // next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+      })
       next()
       NProgress.done()
     }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
+import Layout from '@/layout'
 
 Vue.use(Router)
 
@@ -14,7 +15,7 @@ export const constantRoutes = [
   {
     path: '',
     name: 'Layout',
-    component: () => import('@/layout'),
+    component: Layout,
     redirect: 'index',
     children: [
       {
@@ -30,6 +31,9 @@ export const constantRoutes = [
     name: 'Login',
     component: () => import('@/views/login')
   }
+]
+// 动态路由，基于用户权限动态去加载
+export const dynamicRoutes = [
 ]
 
 export default new Router({

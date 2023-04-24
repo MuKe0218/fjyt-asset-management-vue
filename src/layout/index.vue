@@ -6,7 +6,7 @@
           <el-scrollbar>
             <div :class="{'fixed-header':fixedHeader}">
               <navbar/>
-              <tags-view v-if="needTagsView"/>
+              <!-- <tags-view v-if="needTagsView"/> -->
             </div>
             <app-main/>
             <!-- <right-panel>
@@ -41,7 +41,7 @@ export default {
       fixedHeader: state => state.settings.fixedHeader
     }),
     classObj () {
-      console.log(this.sidebar.opened + '/n' + this.sidebar.withoutAnimation)
+      // console.log(this.sidebar.opened + '/n' + this.sidebar.withoutAnimation)
       return {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,

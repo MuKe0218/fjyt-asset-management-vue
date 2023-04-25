@@ -43,6 +43,7 @@ router.beforeEach((to, from, next) => {
       // }
       store.dispatch('GenerateRoutes').then(accessRoutes => {
         // 根据roles权限生成可访问的路由表
+        console.log(accessRoutes.length)
         for (let i = 0; i < accessRoutes.length; i++) {
           router.addRoute(accessRoutes[i])
         }

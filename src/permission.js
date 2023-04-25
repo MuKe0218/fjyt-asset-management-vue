@@ -41,14 +41,16 @@ router.beforeEach((to, from, next) => {
       // } else {
       //   next()
       // }
-      console.log(to.path)
       store.dispatch('GenerateRoutes').then(accessRoutes => {
         // 根据roles权限生成可访问的路由表
-        // router.addRoutes(accessRoutes) // 动态添加可访问路由表
-        // next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+        for (let i = 0; i < accessRoutes.length; i++) {
+          router.addRoute(accessRoutes[i])
+        }
+        console.log('添加路由成功')
+        // router.addRoute(accessRoutes)
+        next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
       })
       next()
-      NProgress.done()
     }
   } else {
     // 没有token

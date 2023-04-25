@@ -9,8 +9,25 @@ import store from './store'
 import './permission'
 import './assets/icons'
 import '@/assets/styles/index.scss'
+import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, handleTree } from './utils/fjyt'
+import { getDicts } from './api/system/dict/data'
+// 自定义表格工具组件
+import RightToolbar from './components/RightToolbar'
+// 字典数据组件
+import DictData from './components/DictData'
+
+// 全局方法挂载
+Vue.prototype.getDicts = getDicts
+Vue.prototype.parseTime = parseTime
+Vue.prototype.resetForm = resetForm
+Vue.prototype.addDateRange = addDateRange
+Vue.prototype.selectDictLabel = selectDictLabel
+Vue.prototype.selectDictLabels = selectDictLabels
+Vue.prototype.handleTree = handleTree
 
 Vue.use(ElementUI)
+Vue.component('RightToolbar', RightToolbar)
+DictData.install()
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

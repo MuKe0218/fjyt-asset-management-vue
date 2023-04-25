@@ -1,5 +1,6 @@
 import auth from '@/plugins/auth'
-import router, { constantRoutes, dynamicRoutes } from '@/router'
+// import router, { constantRoutes, dynamicRoutes } from '@/router'
+import { constantRoutes } from '../../router'
 import { getRouters } from '@/api/menu'
 import Layout from '@/layout/index'
 import ParentView from '@/components/ParentView'
@@ -38,9 +39,10 @@ const permission = {
           const rdata = JSON.parse(JSON.stringify(res.data))
           const sidebarRoutes = filterAsyncRouter(sdata)
           const rewriteRoutes = filterAsyncRouter(rdata, false, true)
-          const asyncRoutes = filterDynamicRoutes(dynamicRoutes)
-          rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true })
-          router.addRoutes(asyncRoutes)
+          // const asyncRoutes = filterDynamicRoutes(dynamicRoutes)
+          // rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true })
+          // router.addRoutes(asyncRoutes)
+          // router.addRoute(asyncRoutes[0])
           commit('SET_ROUTES', rewriteRoutes)
           commit('SET_SIDEBAR_ROUTERS', constantRoutes.concat(sidebarRoutes))
           commit('SET_DEFAULT_ROUTES', sidebarRoutes)

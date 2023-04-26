@@ -1,6 +1,6 @@
 // import { login } from '@/api/login'
 
-import { login, logout } from '../../api/login'
+import { login, logout, getInfo } from '../../api/login'
 
 import { getToken, setToken, setExpiresIn, removeToken } from '@/utils/auth'
 const user = {
@@ -46,6 +46,26 @@ const user = {
           setExpiresIn(data.expires_in)
           commit('SET_EXPIRES_IN', data.expires_in)
           resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 获取用户信息
+    GetInfo ({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        getInfo().then(res => {
+          const user = res.user
+          const avatar = (user.avatar === '' || user.avatar == null) ? require('@/assets/images/profile.jpg') : user.avatar
+          if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+            commit('SET_ROLES', res.roles)
+            commit('SET_PERMISSIONS', res.permissions)
+          } else {
+            commit('SET_ROLES', ['ROLE_DEFAULT'])
+          }
+          commit('SET_NAME', user.userName)
+          commit('SET_AVATAR', avatar)
+          resolve(res)
         }).catch(error => {
           reject(error)
         })

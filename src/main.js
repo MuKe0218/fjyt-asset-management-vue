@@ -10,6 +10,7 @@ import './permission'
 import './assets/icons'
 import '@/assets/styles/index.scss'
 import plugins from './plugins'
+import directive from './directive' // directive
 import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, handleTree } from './utils/fjyt'
 import { getDicts } from './api/system/dict/data'
 // 自定义表格工具组件
@@ -28,6 +29,7 @@ Vue.prototype.handleTree = handleTree
 
 Vue.use(ElementUI)
 Vue.use(plugins)
+Vue.use(directive)
 Vue.component('RightToolbar', RightToolbar)
 DictData.install()
 Vue.config.productionTip = false

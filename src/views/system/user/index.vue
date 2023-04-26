@@ -269,12 +269,12 @@
                     v-hasPermi="['system:user:resetPwd']"
                     >重置密码</el-dropdown-item
                   >
-                  <el-dropdown-item
+                  <!-- <el-dropdown-item
                     command="handleAuthRole"
                     icon="el-icon-circle-check"
                     v-hasPermi="['system:user:edit']"
                     >分配角色</el-dropdown-item
-                  >
+                  > -->
                 </el-dropdown-menu>
               </el-dropdown>
             </template>

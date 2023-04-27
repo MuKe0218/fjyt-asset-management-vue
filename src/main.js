@@ -9,6 +9,7 @@ import store from './store'
 import './permission'
 import './assets/icons'
 import '@/assets/styles/index.scss'
+import '@/assets/styles/fjyt.scss'
 import plugins from './plugins'
 import directive from './directive' // directive
 import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, handleTree } from './utils/fjyt'

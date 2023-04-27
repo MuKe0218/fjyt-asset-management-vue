@@ -14,6 +14,9 @@ import plugins from './plugins'
 import directive from './directive' // directive
 import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, handleTree } from './utils/fjyt'
 import { getDicts } from './api/system/dict/data'
+import { download } from '@/utils/request'
+// 分页组件
+import Pagination from '@/components/Pagination'
 // 自定义表格工具组件
 import RightToolbar from './components/RightToolbar'
 // 字典数据组件
@@ -26,7 +29,10 @@ Vue.prototype.resetForm = resetForm
 Vue.prototype.addDateRange = addDateRange
 Vue.prototype.selectDictLabel = selectDictLabel
 Vue.prototype.selectDictLabels = selectDictLabels
+Vue.prototype.download = download
 Vue.prototype.handleTree = handleTree
+// 全局组件挂载
+Vue.component('Pagination', Pagination)
 
 Vue.use(ElementUI)
 Vue.use(plugins)

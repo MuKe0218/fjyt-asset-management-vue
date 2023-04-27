@@ -392,7 +392,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
+          <!-- <el-col :span="12">
             <el-form-item label="岗位">
               <el-select
                 v-model="form.postIds"
@@ -408,7 +408,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-          </el-col>
+          </el-col> -->
           <el-col :span="12">
             <el-form-item label="角色">
               <el-select
@@ -628,9 +628,9 @@ export default {
   created () {
     this.getList()
     this.getDeptTree()
-    this.getConfigKey('sys.user.initPassword').then((response) => {
-      this.initPassword = response.msg
-    })
+    // this.getConfigKey('sys.user.initPassword').then((response) => {
+    //   this.initPassword = response.msg
+    // })
   },
   methods: {
     /** 查询用户列表 */

@@ -52,7 +52,6 @@
       <el-table-column
         prop="classifyName"
         label="分类名称"
-        align="center"
         width="260"
       ></el-table-column>
       <el-table-column

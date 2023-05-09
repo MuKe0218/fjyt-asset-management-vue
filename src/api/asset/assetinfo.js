@@ -8,6 +8,13 @@ export function listAsset (query) {
     params: query
   })
 }
+// 根据id查询资产信息
+export function listAssetById (id) {
+  return request({
+    url: '/asset/assetInfo/' + id,
+    method: 'get'
+  })
+}
 // 新增资产信息
 export function addAsset (data) {
   return request({
@@ -25,9 +32,9 @@ export function updateAsset (data) {
   })
 }
 // 删除资产信息
-export function delAsset (assetId) {
+export function delAsset (id) {
   return request({
-    url: '/asset/assetInfo/' + assetId,
+    url: '/asset/assetInfo/' + id,
     method: 'delete'
   })
 }
@@ -35,6 +42,13 @@ export function delAsset (assetId) {
 export function getStatusList () {
   return request({
     url: '/asset/assetInfo/status',
+    method: 'get'
+  })
+}
+// 查询创建方式列表
+export function getCreateWayList () {
+  return request({
+    url: '/asset/assetInfo/createWay',
     method: 'get'
   })
 }

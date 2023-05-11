@@ -3,6 +3,14 @@ import request from '@/utils/request'
 // 获取资产信息
 export function listAsset (query) {
   return request({
+    url: '/asset/assetInfo',
+    method: 'get',
+    params: query
+  })
+}
+// 获取资产信息 无分页
+export function listAssetWithoutPage (query) {
+  return request({
     url: '/asset/assetInfo/list',
     method: 'get',
     params: query

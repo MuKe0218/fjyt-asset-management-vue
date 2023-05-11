@@ -172,7 +172,7 @@
           <span>{{ parseTime(scope.row.updateTime) }}</span>
         </template>
         </el-table-column>
-        <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
+        <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="150" fixed="right">
         <template slot-scope="scope">
               <el-button
               size="mini"
@@ -290,22 +290,58 @@
 
     <!-- 详情 -->
     <el-dialog :title="detailTitle" :visible.sync="detailOpen" width="800px" append-to-body>
-          <el-descriptions :title="'资产名称：'+detailForm.assetName" direction="vertical" :column="6" border
+          <el-descriptions direction="vertical" :column="6" border
           >
-         <el-descriptions-item label="资产状态">
+         <el-descriptions-item
+         label="资产状态"
+         :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}">
           <el-tag
             :type = "detailForm.type"
             >
               {{detailForm.label}}
             </el-tag>
           </el-descriptions-item>
-          <el-descriptions-item label="资产类别" >{{detailForm.classifyName}}</el-descriptions-item>
-          <el-descriptions-item label="资产规格/型号" >{{detailForm.assetSpecifications}}</el-descriptions-item>
-          <el-descriptions-item label="资产计量单位" >{{detailForm.assetUnit}}</el-descriptions-item>
-          <el-descriptions-item label="资产金额" >{{detailForm.assetPrice}}</el-descriptions-item>
-          <el-descriptions-item label="创建方式" >{{detailForm.createWayLabel}}</el-descriptions-item>
-          <el-descriptions-item label="创建人" >{{detailForm.createUser}}</el-descriptions-item>
-          <el-descriptions-item label="创建时间" >{{ parseTime(detailForm.createTime)}}</el-descriptions-item>
+          <el-descriptions-item
+          label="资产名称"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{detailForm.assetName}}</el-descriptions-item>
+          <el-descriptions-item
+          label="资产类别"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{detailForm.classifyName}}</el-descriptions-item>
+          <el-descriptions-item
+          label="资产规格/型号"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{detailForm.assetSpecifications}}</el-descriptions-item>
+          <el-descriptions-item
+          label="资产计量单位"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{detailForm.assetUnit}}</el-descriptions-item>
+          <el-descriptions-item
+          label="资产金额"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{detailForm.assetPrice}}</el-descriptions-item>
+          <el-descriptions-item
+          label="创建方式"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{detailForm.createWayLabel}}</el-descriptions-item>
+          <el-descriptions-item
+          label="创建人"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{detailForm.createUser}}</el-descriptions-item>
+          <el-descriptions-item
+          label="创建时间"
+          :contentStyle="{'text-align': 'center'}"
+          :labelStyle="{'text-align':'center'}"
+          >{{ parseTime(detailForm.createTime)}}</el-descriptions-item>
           </el-descriptions>
           <el-divider></el-divider>
           <el-table

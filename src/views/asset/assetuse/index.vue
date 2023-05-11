@@ -52,8 +52,8 @@
         value-format="yyyy-MM-dd"
         type="daterange"
         range-separator="至"
-        start-placeholde="开始日期"
-        end-placeholde="结束日期"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
         style="width: 240px"
         clearable
         >
@@ -65,8 +65,8 @@
         value-format="yyyy-MM-dd"
         type="daterange"
         range-separator="至"
-        start-placeholde="开始日期"
-        end-placeholde="结束日期"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
         style="width: 240px"
         clearable
         >
@@ -458,6 +458,7 @@ export default{
     // 重置按钮操作
     resetQuery () {
       this.createDateRange = []
+      this.useDateRange = []
       this.queryParams.status = undefined
       this.queryParams.createWay = undefined
       this.resetForm('queryForm')

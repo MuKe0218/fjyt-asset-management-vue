@@ -147,6 +147,7 @@
               {{createWayList[scope.row.createWay].label}}
           </template>
         </el-table-column>
+        <el-table-column label="备注" prop="remark" align="center" width="150"></el-table-column>
         <el-table-column label="创建人" prop="createUser" align="center" width="150"></el-table-column>
         <el-table-column label="创建时间" align="center" width="150">
             <template slot-scope="scope">
@@ -323,12 +324,12 @@
           label="申请人"
           :contentStyle="{'text-align': 'center'}"
           :labelStyle="{'text-align':'center'}"
-          >{{detailForm.useUser}}</el-descriptions-item>
+          >{{detailForm.borrowUser}}</el-descriptions-item>
           <el-descriptions-item
           label="申请时间"
           :contentStyle="{'text-align': 'center'}"
           :labelStyle="{'text-align':'center'}"
-          >{{parseTime(detailForm.useTime)}}</el-descriptions-item>
+          >{{parseTime(detailForm.borrowTime)}}</el-descriptions-item>
           <el-descriptions-item
           label="借用开始时间"
           :contentStyle="{'text-align': 'center'}"
@@ -559,6 +560,9 @@ export default{
       this.detailOpen = true
       listBorrowById(row.id).then(response => {
         this.detailForm = response.data
+        this.detailForm.type = this.statusList[row.status].type
+        this.detailForm.label = this.statusList[row.status].label
+        this.detailForm.createWayLabel = this.createWayList[row.createWay].label
       })
     },
     // 新增按钮操作

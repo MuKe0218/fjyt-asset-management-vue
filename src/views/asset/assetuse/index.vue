@@ -124,6 +124,7 @@
               {{createWayList[scope.row.createWay].label}}
           </template>
         </el-table-column>
+        <el-table-column label="备注" prop="remark" align="center" width="150"></el-table-column>
         <el-table-column label="创建人" prop="createUser" align="center" width="150"></el-table-column>
         <el-table-column label="创建时间" align="center" width="150">
             <template slot-scope="scope">

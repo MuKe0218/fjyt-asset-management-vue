@@ -6,21 +6,21 @@
         size="small"
         :inline="true"
         >
-        <el-form-item label="维修单编号">
+        <el-form-item label="维修单编号" prop="maintenanceCode">
             <el-input
             v-model="queryParams.maintenanceCode"
             placeholder="请输入维修单编号"
             clearable
             style="width: 240px"></el-input>
         </el-form-item>
-        <el-form-item label="申请人">
+        <el-form-item label="申请人" prop="maintenanceUser">
             <el-input
             v-model="queryParams.maintenanceUser"
             clearable
             placeholder="请输入申请人"
             style="width:240px"></el-input>
         </el-form-item>
-        <el-form-item label="状态">
+        <el-form-item label="状态" prop="status">
             <el-select
             v-model="queryParams.status"
             placeholder="维修单状态"
@@ -33,7 +33,7 @@
         </el-option>
         </el-select>
         </el-form-item>
-        <el-form-item label="创建方式">
+        <el-form-item label="创建方式" prop="createWay">
             <el-select
             v-model="queryParams.createWay"
             placeholder="创建方式"
@@ -392,7 +392,11 @@ export default {
       // 搜索条件
       queryParams: {
         pageNum: 1,
-        pageSize: 10
+        pageSize: 10,
+        maintenanceCode: undefined,
+        maintenanceUser: undefined,
+        status: undefined,
+        createWay: undefined
       },
       // 资产列表筛选条件
       assetQueryParams: {},
@@ -464,12 +468,9 @@ export default {
     },
     // 重置
     resetQuery () {
-      this.queryParams.maintenanceCode = undefined
-      this.queryParams.maintenanceUser = undefined
-      this.queryParams.status = undefined
-      this.queryParams.createWay = undefined
       this.mainDateRange = []
       this.createDateRange = []
+      this.resetForm('queryForm')
       this.handleQuery()
     },
     // 筛选

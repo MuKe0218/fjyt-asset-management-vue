@@ -6,19 +6,19 @@
         size="small"
         :inline="true"
         v-show="showSearch">
-    <el-form-item label="借用单编号" >
+    <el-form-item label="借用单编号" prop="borrowCode">
         <el-input v-model="queryParams.borrowCode"
         placeholder="请输入借用单编号"
         clearable
         style="width: 240px"/>
     </el-form-item>
-    <el-form-item label="申请人">
+    <el-form-item label="申请人" prop="borrowName">
         <el-input v-model="queryParams.borrowName"
         placeholder="请输入申请人姓名"
         clearable
         style="width: 240px"/>
     </el-form-item>
-    <el-form-item label="状态">
+    <el-form-item label="状态" prop="status">
         <el-select
         v-model="queryParams.status"
         placeholder="借用单状态"
@@ -32,7 +32,7 @@
     </el-option>
     </el-select>
     </el-form-item>
-    <el-form-item label="创建方式" >
+    <el-form-item label="创建方式" prop="createWay">
         <el-select
         v-model="queryParams.createWay"
         placeholder="创建方式"
@@ -428,6 +428,7 @@ export default{
         pageNum: 1,
         pageSize: 10,
         borrowCode: undefined,
+        borrowName: undefined,
         status: undefined,
         createWay: undefined
       },
@@ -498,8 +499,6 @@ export default{
       this.createDateRange = []
       this.startDateRange = []
       this.returnDateRange = []
-      this.queryParams.status = undefined
-      this.queryParams.createWay = undefined
       this.resetForm('queryForm')
       this.handleQuery()
     },

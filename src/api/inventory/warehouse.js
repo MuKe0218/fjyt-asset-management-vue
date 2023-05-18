@@ -8,6 +8,13 @@ export function listWarehouse (query) {
     params: query
   })
 }
+// 获取仓库信息列表没哟分页
+export function listWarehouseWithoutPage () {
+  return request({
+    url: '/asset/warehouse/list',
+    method: 'get'
+  })
+}
 // 根据id查询领用信息
 export function warehouseById (id) {
   return request({

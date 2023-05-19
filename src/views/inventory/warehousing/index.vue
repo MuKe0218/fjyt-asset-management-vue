@@ -58,7 +58,6 @@
           :contentStyle="{'text-align': 'center'}"
           :labelStyle="{'text-align':'center'}"
           >{{ parseTime(detailForm.warehousingTime)}}</el-descriptions-item>
-          </el-descriptions>
           <el-descriptions-item
           label="创建人"
           :contentStyle="{'text-align': 'center'}"
@@ -69,6 +68,7 @@
           :contentStyle="{'text-align': 'center'}"
           :labelStyle="{'text-align':'center'}"
           >{{ parseTime(detailForm.createTime)}}</el-descriptions-item>
+        </el-descriptions>
           <el-divider></el-divider>
           <el-table
           :data="detailForm.warehousingAssetList"
@@ -77,8 +77,6 @@
                 <el-table-column label="资产编号"  align="center" prop="assetCode" width="180"/>
                 <el-table-column label="名称"  align="center" prop="assetName" :show-overflow-tooltip="true" width="180" />
                 <el-table-column label="类别"  align="center" prop="classifyName" width="180" />
-                <el-table-column label="数量"  align="center" prop="num" width="180" />
-                <el-table-column label="金额"  align="center" prop="price" width="180" />
                 <el-table-column label="规格/型号"  align="center" prop="assetSpecifications" width="200" />
           </el-table>
     </el-dialog>

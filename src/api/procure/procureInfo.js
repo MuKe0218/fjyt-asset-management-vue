@@ -4,7 +4,8 @@ import request from '@/utils/request'
 export function getProcureList (query) {
   return request({
     url: '/asset/procure',
-    method: 'get'
+    method: 'get',
+    params: query
   })
 }
 // 根据id获取入库单详情
@@ -19,5 +20,12 @@ export function getStatusList () {
   return request({
     url: '/asset/procure/status',
     method: 'get'
+  })
+}
+// 验收
+export function checkAndAccept (id) {
+  return request({
+    url: '/asset/procure/' + id,
+    method: 'put'
   })
 }

@@ -9,6 +9,7 @@
             <el-input
             v-model="queryParams.procureCode"
             placeholder="请输入采购单编号"
+            clearable
             style="width: 240px">
         </el-input>
         </el-form-item>
@@ -16,6 +17,7 @@
             <el-input
             v-model="queryParams.procureUser"
             placeholder="请输入采购申请人"
+            clearable
             style="width: 240px">
         </el-input>
         </el-form-item>
@@ -56,12 +58,13 @@
             <template slot-scope="scope">
                 <el-link type="primary"
                 @click="handleGetProcureDetail(scope.row)">
-            {{scope.row.useCode }}
+            {{scope.row.procureCode }}
             </el-link>
             </template>
         </el-table-column>
-        <el-table-column label="采购物质" prop="procureAssets" align="center" width="150">
-
+        <el-table-column label="采购物品" prop="assetNames" align="center" width="150">
+        </el-table-column>
+        <el-table-column label="采购申请人" prop="procureUser" align="center" width="150">
         </el-table-column>
         <el-table-column label="采购申请时间" align="center" width="150">
             <template slot-scope="scope">
@@ -69,6 +72,14 @@
             </template>
         </el-table-column>
         <el-table-column label="备注" prop="remark" align="center" width="200"></el-table-column>
+        <el-table-column label="操作" align="center" width="200">
+          <template slot-scope="scope" v-if="scope.row.status !== '3'">
+            <el-button
+                size="mini"
+                type="text"
+                @click="handleAccept(scope.row)">验收</el-button>
+          </template>
+        </el-table-column>
     </el-table>
     <pagination
           v-show="total > 0"
@@ -79,6 +90,7 @@
 
         <!-- 详情 -->
         <el-dialog :title="detailTitle" :visible.sync="detailOpen" width="800px">
+          <el-descriptions>
             <el-descriptions-item
         label="采购状态"
         :contentStyle="{'text-align': 'center'}"
@@ -99,16 +111,17 @@
           :contentStyle="{'text-align': 'center'}"
           :labelStyle="{'text-align':'center'}"
           >{{parseTime(detailForm.procureTime)}}</el-descriptions-item>
+          </el-descriptions>
           <el-divider></el-divider>
           <el-table
-          :data="detailForm.procureAssetList"
+          :data="detailForm.mapList"
           style="width: 100%"
           height="250">
-                <el-table-column label="物品名称"  align="center" prop="assetName" width="200"/>
-                <el-table-column label="规格/型号"  align="center" prop="assetSpecifications" width="200" />
-                <el-table-column label="计量单位"  align="center" prop="unit" width="200" />
-                <el-table-column label="数量"  align="center" prop="num" width="200" />
-                <el-table-column label="金额"  align="center" prop="price" width="200" />
+                <el-table-column label="物品名称"  align="center" prop="assetName" width="150"/>
+                <el-table-column label="规格/型号"  align="center" prop="assetSpecifications" width="150" />
+                <el-table-column label="计量单位"  align="center" prop="unit" width="150" />
+                <el-table-column label="数量"  align="center" prop="num" width="150" />
+                <el-table-column label="金额"  align="center" prop="price" width="150" />
             </el-table>
         </el-dialog>
     </div>
@@ -117,7 +130,8 @@
 import {
   getProcureList,
   getProcureDetail,
-  getStatusList
+  getStatusList,
+  checkAndAccept
 } from '@/api/procure/procureInfo'
 export default {
   name: 'procureInfo',
@@ -130,9 +144,9 @@ export default {
       // 详情对话框标题
       detailTitle: '',
       // 采购列表
-      procureList: {},
+      procureList: [],
       // 状态列表
-      statusList: {},
+      statusList: [],
       // 搜索条件
       queryParams: {
         pageNum: 1,
@@ -141,11 +155,15 @@ export default {
       // 采购申请时间搜索日期范围
       procureDateRange: [],
       // 详情form
-      detailForm: {}
+      detailForm: {
+        type: undefined,
+        label: undefined
+      }
     }
   },
   created () {
     this.getProcureList()
+    this.getStatusList()
   },
   methods: {
     // 搜索按钮
@@ -164,11 +182,21 @@ export default {
     handleGetProcureDetail (row) {
       getProcureDetail(row.id).then(response => {
         this.detailForm = response.data
+        this.detailForm.type = this.statusList[row.status].type
+        this.detailForm.label = this.statusList[row.status].label
       })
+      this.detailTitle = row.procureCode
+      this.detailOpen = true
     },
     getStatusList () {
       getStatusList().then(response => {
         this.statusList = response.data
+      })
+    },
+    // 验收
+    handleAccept (row) {
+      checkAndAccept(row.id).then(response => {
+        this.$modal.msgSuccess('验收成功')
       })
     }
   }

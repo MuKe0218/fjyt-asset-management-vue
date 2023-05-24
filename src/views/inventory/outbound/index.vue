@@ -32,14 +32,14 @@
         <el-table-column label="出库资产" align="center" prop="assetNames" width="150"></el-table-column>
         <el-table-column label="出库时间" align="center"  width="150">
             <template slot-scope="scope">
-                {{scope.row.outboundTime}}
+                {{parseTime(scope.row.outboundTime)}}
             </template>
         </el-table-column>
-        <el-table-column label="出库单创建人" align="center" prop="createUser"  width="150">
-        </el-table-column>
+        <!-- <el-table-column label="出库单创建人" align="center" prop="createUser"  width="150">
+        </el-table-column> -->
         <el-table-column label="出库单创建时间" align="center"  width="150">
             <template slot-scope="scope">
-                {{scope.row.createTime}}
+                {{parseTime(scope.row.createTime)}}
             </template>
         </el-table-column>
     </el-table>
@@ -110,7 +110,9 @@ export default {
       detailForm: {}
     }
   },
-  created () {},
+  created () {
+    this.getOutboundList()
+  },
   methods: {
     // 搜索按钮
     handleQuery () {},

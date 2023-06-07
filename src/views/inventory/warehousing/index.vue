@@ -35,8 +35,6 @@
                 {{parseTime(scope.row.warehousingTime)}}
             </template>
         </el-table-column>
-        <el-table-column label="入库单创建人" align="center" prop="createUser"  width="150">
-        </el-table-column>
         <el-table-column label="入库单创建时间" align="center" width="150">
             <template slot-scope="scope">
                 {{parseTime(scope.row.createTime)}}

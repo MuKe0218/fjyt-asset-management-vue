@@ -221,9 +221,9 @@
     </el-row>
     <el-row>
       <el-col :span="12">
-        <el-form-item label="资产状态" prop="status">
+          <el-form-item label="资产状态" prop="status">
           <el-select
-          v-model="form.status" placeholder="请选择状态">
+          v-model="form.status" placeholder="请选择状态" :disabled="statusDisabled">
             <el-option
               v-for="item in statusList"
               :key="item.value"
@@ -384,6 +384,8 @@ export default{
       multiple: true,
       // 显示搜索条件
       showSearch: true,
+      // 状态选择是否禁用
+      statusDisabled: true,
       // 总条数
       total: 0,
       // 资产表格数据
@@ -452,9 +454,9 @@ export default{
         assetName: [
           { required: true, message: '资产名称不能为空', trigger: 'blur' }
         ],
-        classifyId: [
-          { required: true, message: '请选择分类', trigger: 'blur' }
-        ],
+        // classifyId: [
+        //   { required: true, message: '请选择分类', trigger: 'blur' }
+        // ],
         assetPrice: [
           { required: true, message: '资产金额不能为空', trigger: 'blur' }
           // eslint-disable-next-line standard/object-curly-even-spacing
@@ -549,12 +551,14 @@ export default{
     },
     /** 新增按钮操作 */
     handleAdd () {
+      this.statusDisabled = true
       this.reset()
       this.open = true
       this.title = '新增资产'
     },
     // 编辑按钮操作
     handleUpdate (row) {
+      this.statusDisabled = false
       this.reset()
       listAssetById(row.id).then(response => {
         this.form = response.data

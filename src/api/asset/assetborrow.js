@@ -30,6 +30,13 @@ export function addBorrow (data) {
     data: data
   })
 }
+// 归还
+export function assetReturn (id) {
+  return request({
+    url: '/asset/assetBorrow/' + id,
+    method: 'put'
+  })
+}
 // 修改借用信息
 export function updateBorrow (data) {
   return request({

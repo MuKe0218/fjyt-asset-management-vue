@@ -30,6 +30,13 @@ export function addUse (data) {
     data: data
   })
 }
+// 退库
+export function StockReturn (id) {
+  return request({
+    url: '/asset/assetUse/' + id,
+    method: 'put'
+  })
+}
 // 修改领用信息
 export function updateUse (data) {
   return request({

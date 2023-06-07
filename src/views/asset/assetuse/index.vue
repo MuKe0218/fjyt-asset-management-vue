@@ -139,6 +139,12 @@
         </el-table-column>
         <el-table-column label="操作" align="center" width="200" fixed="right">
             <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="text"
+                icon="el-icon-takeaway-box"
+                v-if="scope.row.status != '3'"
+                @click="handleStockReturn(scope.row)">退库</el-button>
                 <el-button
                 size="mini"
                 type="text"
@@ -330,6 +336,7 @@ import {
   listUseById,
   addUse,
   updateUse,
+  StockReturn,
   delUse
 } from '@/api/asset/assetuse'
 import {listAssetWithoutPage, getCreateWayList} from '@/api/asset/assetinfo'
@@ -548,6 +555,13 @@ export default{
           break
         }
       }
+    },
+    // 退库按钮操作
+    handleStockReturn (row) {
+      StockReturn(row.id).then(response => {
+        this.$modal.msgSuccess('退库成功')
+        this.getList()
+      })
     },
     // 修改按钮操作
     handleUpdate (row) {

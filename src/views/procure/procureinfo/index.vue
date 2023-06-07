@@ -197,6 +197,7 @@ export default {
     handleAccept (row) {
       checkAndAccept(row.id).then(response => {
         this.$modal.msgSuccess('验收成功')
+        this.getProcureList()
       })
     }
   }

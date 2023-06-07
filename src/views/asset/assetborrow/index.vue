@@ -162,6 +162,12 @@
         </el-table-column>
         <el-table-column label="操作" align="center" width="200" fixed="right">
             <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="text"
+                icon="el-icon-refresh-right"
+                v-if="scope.row.status != '3'"
+                @click="handleReturn(scope.row)">归还</el-button>
                 <el-button
                 size="mini"
                 type="text"
@@ -382,6 +388,7 @@ import {
   borrowStatusList,
   addBorrow,
   updateBorrow,
+  assetReturn,
   delBorrow
 } from '@/api/asset/assetborrow'
 import {listAssetWithoutPage, getCreateWayList} from '@/api/asset/assetinfo'
@@ -576,6 +583,13 @@ export default{
       this.getAssetList()
       this.getAssetClassify()
       this.assetOpen = true
+    },
+    // 归还
+    handleReturn (row) {
+      assetReturn(row.id).then(response => {
+        this.$modal.msgSuccess('已归还')
+        this.getList()
+      })
     },
     // 修改按钮操作
     handleUpdate (row) {
